@@ -44,7 +44,11 @@ Output formats include:
 2. Add your proxies to the file, one per line
 3. Run the script:
    ```
-   python bot.py # or python3 bot.py
+   python bot.py
+   ```
+   or
+   ```
+   python3 bot.py
    ```
 4. Follow the menu prompts to select your desired operation
 
