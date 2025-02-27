@@ -43,6 +43,7 @@ Output formats include:
 1. Create a file named `proxies.txt` in the same directory as the script
 2. Add your proxies to the file, one per line
 3. Run the script:
+
    ```
    python bot.py
    ```
