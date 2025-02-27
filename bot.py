@@ -12,7 +12,7 @@ MAX_WORKERS = 10
 
 
 def get_current_timestamp():
-    return datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    return datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S")
 
 
 def log_message(message, log_file=None):
