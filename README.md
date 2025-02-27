@@ -16,23 +16,16 @@ This tool allows you to:
 - Required packages:
   - requests
   - urllib3
+  - PySocks (required for SOCKS proxy testing)
 
-Install dependencies with:
+Install all dependencies with:
 ```
-pip install requests urllib3
+pip install requests urllib3 PySocks
 ```
 
-## Usage
+> **Note**: Without PySocks, you'll get "Missing dependencies for SOCKS support" error when testing SOCKS proxies.
 
-1. Create a file named `proxies.txt` in the same directory as the script
-2. Add your proxies to the file, one per line
-3. Run the script:
-   ```
-   python bot.py 
-   ```
-4. Follow the menu prompts to select your desired operation
-
-### Supported Proxy Formats
+## Proxy Formats
 
 Input format can be:
 - `host:port` (without authentication)
@@ -45,15 +38,48 @@ Output formats include:
 - cURL SOCKS5: `--proxy-socks5 host:port -U username:password`
 - cURL HTTP: `--proxy-http host:port -U username:password`
 
+## Usage
+
+1. Create a file named `proxies.txt` in the same directory as the script
+2. Add your proxies to the file, one per line
+3. Run the script:
+   ```
+   python bot.py # or python3 bot.py
+   ```
+4. Follow the menu prompts to select your desired operation
+
 ### Testing Proxies
 
 The utility can test proxies using either SOCKS5 or HTTP protocol. It performs a request to https://httpbin.org/ip through each proxy to verify connectivity.
+
+For SOCKS proxy testing:
+- Make sure you have the PySocks package installed
+- SOCKS4, SOCKS5, and SOCKS5h protocols are supported
 
 Test results include:
 - Success/failure status
 - Response time
 - IP address (for successful tests)
 - Error messages (for failed tests)
+
+## Troubleshooting
+
+Common issues:
+
+1. "Missing dependencies for SOCKS support" error
+   - Solution: Run `pip install PySocks`
+
+2. No proxies found
+   - Make sure `proxies.txt` exists in the same directory as the script
+   - Ensure the file contains at least one proxy
+
+3. Connection timeouts
+   - Check if the proxy is still active
+   - Increase the `TEST_TIMEOUT` value in the script for slow proxies
+
+4. Authentication failures
+   - Verify username and password are correct
+   - Ensure the proxy supports authentication
 
 ## Output
 
@@ -66,7 +92,7 @@ Results are saved to a file named `logs`:
 ```
 ==============================================================
 PROXY CONVERTER & TESTER
-Current Date and Time (UTC): 2025-02-27 12:34:56
+Current Date and Time (UTC): 0000-00-00 00:00:00
 Current User's Login: username
 ==============================================================
 
@@ -91,3 +117,5 @@ Enter choice (1-7): 6
 - Simple command-line interface
 - Format conversion for various use cases
 - Efficient proxy validation
+- Support for both HTTP and SOCKS proxies
+- Handles authenticated and non-authenticated proxies
